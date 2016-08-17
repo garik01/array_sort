@@ -1,33 +1,43 @@
-#include "lib.h"
-
+#include "sort.h"
 
 int main()
 {
-	background();
-	sort sort;
+	system("color 2F");
+	setlocale(LC_ALL, "Russian");
+	sort Sort;
+	int maxIndex = 10;
 
+	std::cout << "Рандомная строка:\n";
+	int *Array = Sort.RandomArray(maxIndex);
+	for (int i = 0; i < maxIndex - 1; i++)
+		std::cout << Array[i];
+	std::cout << "\n";
 
-	cout << "Выберите тип сортировки: \n1. Метод пузырьковой сортировки.\n";
-	int i;
-	cout << ": ";
-	cin >> i;
-
-	int Array[100];
-	for (int i = 0; i < 100; i++) 
 	{
-		Array[i] = rand();
+		std::cout << "Сортировка Bubble:\n";
+		int *Temp = Sort.Bubble(Array, maxIndex);
+		for (int i = 0; i < maxIndex - 1; i++)
+			std::cout << Temp[i];
+		std::cout << "\n"; 
 	}
 
-	switch (i)
 	{
-		case 1:
-			sort.Bubble();
-			break;
-		default:
-			break;
+		std::cout << "Сортировка выбором:\n";
+		int *Temp = Sort.SelectionSort(Array, maxIndex);
+		for (int i = 0; i < maxIndex - 1; i++)
+			std::cout << Temp[i];
+		std::cout << "\n";
 	}
 
-	system("pause");
-    return 0;
+	{
+		std::cout << "Быстрая сортировка: \n";
+		int *Temp = Sort.QSort(Array, maxIndex);
+		for (int i = 0; i < maxIndex - 1; i++)
+			std::cout << Temp[i];
+		std::cout << "\n";
+	}
+
+	std::cout << "\n";
+	system("PAUSE");
+	return 0;
 }
-
