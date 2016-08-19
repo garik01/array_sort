@@ -9,8 +9,12 @@ class sort
 public:
 	int *RandomArray(int max);
 	int *SelectionSort(int *arr, int max);
-	int *Bubble(int *arr, int max);
+	int *BubbleSort(int *arr, int max);
 	int *QSort(int *arr, int max);
+	int *InsertSort(int *arr, int max);
+	int *ShellSort(int *arr, int max);
+	int *HeapSort(int *arr, int max);
+
 	sort();
 	~sort();
 };
