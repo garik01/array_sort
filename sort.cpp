@@ -36,7 +36,7 @@ int *sort::SelectionSort(int *arr, int max)
 	return arr;
 }
 
-int *sort::Bubble(int *arr, int max)
+int *sort::BubbleSort(int *arr, int max)
 {
 	for (int i = 0; i < max - 1; i++)
 	{
@@ -76,6 +76,24 @@ void sort::QS(int *arr, int left, int right)
 		}
 	} while (i <= j);
 	if (left < j) QS(arr, left, j); if (i < right) QS(arr, i, right);
+}
+
+int *sort::InsertSort(int *arr, int max)
+{
+	int temp;
+	for (int i = 1, j; i < max - 1; ++i)
+	{
+		temp = arr[i];
+		for (j = i - 1; j >= 0 && arr[j] > temp; --j)
+			arr[j + 1] = arr[j];
+		arr[j + 1] = temp;   
+	}
+	return arr;
+}
+
+int sort::*ShellSort(int *arr, int max)
+{
+
 }
 
 sort::sort()
