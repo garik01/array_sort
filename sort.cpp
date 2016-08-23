@@ -136,7 +136,38 @@ int sort::increment(long inc[], long size)
 
 int *sort::HeapSort(int *arr, int max)
 {
-	return 0;
+	long i;
+	int temp;
+	for (i = max / 2 - 1; i >= 0; --i)
+		downHeap(arr, i, max - 1);
+	for (i = max - 1; i > 0; --i)
+	{
+		temp = arr[i];
+		arr[i] = arr[0];
+		arr[0] = temp;
+		downHeap(arr, 0, i - 1);
+	}
+	return arr;
+}
+
+void sort::downHeap(int *arr, long k, long n)
+{
+	int newElement;
+	long child;
+	newElement = arr[k];
+
+	while (k <= n / 2)
+	{
+		child = 2 * k;
+
+		if (child < n && arr[child] < arr[child + 1])
+			child++;
+		if (newElement >= arr[child])
+			break;
+		arr[k] = arr[child];
+		k = child;
+	}
+	arr[k] = newElement;
 }
 
 sort::sort()
