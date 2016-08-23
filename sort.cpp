@@ -17,21 +17,21 @@ int *sort::RandomArray(int max)
 
 int *sort::SelectionSort(int *arr, int max)
 {
-	int tmp;
-	for (int i = 0; i < max - 1; ++i) // i - номер текущего шага
+	int temp;
+	for (int i = 0; i < max - 1; ++i)
 	{
 		int pos = i;
-		tmp = arr[i];
-		for (int j = i + 1; j < max - 1; ++j) // цикл выбора наименьшего элемента
+		temp = arr[i];
+		for (int j = i + 1; j < max - 1; ++j)
 		{
-			if (arr[j] < tmp)
+			if (arr[j] < temp)
 			{
 				pos = j;
-				tmp = arr[j];
+				temp = arr[j];
 			}
 		}
 		arr[pos] = arr[i];
-		arr[i] = tmp; // меняем местами наименьший с a[i]
+		arr[i] = temp; 
 	}
 	return arr;
 }
@@ -91,9 +91,52 @@ int *sort::InsertSort(int *arr, int max)
 	return arr;
 }
 
-int sort::*ShellSort(int *arr, int max)
+int *sort::ShellSort(int *arr, int max)
 {
+	long inc, i, j, seq[40];
+	int s;
 
+	s = increment(seq, max);
+	while (s >= 0) 
+	{
+		inc = seq[s--];
+		for (i = inc; i < max; ++i)
+		{
+			int temp = arr[i];
+			for (j = i - inc; (j >= 0) && (arr[j] > temp); j -= inc)
+				arr[j + inc] = arr[j];
+			arr[j] = temp;
+		}
+	}
+	return arr;
+}
+
+int sort::increment(long inc[], long size)
+{
+	int p1, p2, p3, s;
+	p1 = p2 = p3 = 1;
+	s = -1;
+	do
+	{
+		if (++s % 2)
+		{
+			inc[s] = 8 * p1 - 6 * p2 + 1;
+		}
+		else
+		{
+			inc[s] = 9 * p1 - 9 * p3 + 1;
+			p2 *= 2;
+			p3 *= 2;
+		}
+		p1 *= 2;
+	} while (3 * inc[s] < size);
+
+	return s > 0 ? --s : 0;
+}
+
+int *sort::HeapSort(int *arr, int max)
+{
+	return 0;
 }
 
 sort::sort()
