@@ -7,8 +7,8 @@
 		2) Сортировка выбором (SelectSort);
 		3) Быстрая сортировка (QSort) без 
 		использования готовой функции qsort;
-		4) Сортировка вставками (InsertSort);     //не реализовано
-		5) Сортировка Шелла (ShellSort);		  //не реализовано
+		4) Сортировка вставками (InsertSort);
+		5) Сортировка Шелла (ShellSort);
 		6) Пирамидальная сортировка (HeapSort);   //не реализовано
 */
 
@@ -57,6 +57,24 @@ int main()
 		int t = clock();
 		std::cout << "Сортировка вставками: \n";
 		int *Temp = Sort.InsertSort(Array, maxIndex);
+		for (int i = 0; i < maxIndex - 1; i++)
+			std::cout << Temp[i];
+		std::cout << "\nВремя выполнения: " << clock() - t << "\n";
+	}
+
+	{
+		int t = clock();
+		std::cout << "Сортировка Шелла: \n";
+		int *Temp = Sort.ShellSort(Array, maxIndex);
+		for (int i = 0; i < maxIndex - 1; i++)
+			std::cout << Temp[i];
+		std::cout << "\nВремя выполнения: " << clock() - t << "\n";
+	}
+
+	{
+		int t = clock();
+		std::cout << "Пирамидальная сортировка: \n";
+		int *Temp = Sort.HeapSort(Array, maxIndex);
 		for (int i = 0; i < maxIndex - 1; i++)
 			std::cout << Temp[i];
 		std::cout << "\nВремя выполнения: " << clock() - t << "\n";
